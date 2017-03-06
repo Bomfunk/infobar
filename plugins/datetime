@@ -2,7 +2,7 @@
 
 source "./lib/bash/jsonify"
 pluginname="datetime"
-plugintext=`date +\◔\ %H\:%M\ \ %a\ %d\ %B\ %y`
+plugintext=$(date "+◔ %Y-%m-%d %a %H:%M:%S")
 plugincolor="#8080FF"
 
 jsonify "$pluginname" "$plugintext" "$plugincolor"
