@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+source "./lib/bash/jsonify"
+pluginname="load"
+threshold="$(nproc --all).0"
+
+read load1 load2 load3 currun total <<<$(cat /proc/loadavg)
+
+plugintext="$load1 $load2 $load3"
+
+if [ "$(echo "${threshold}>${load1}" | bc -l)" -eq 1 ]
+then
+	plugincolor="#DDDDDD"
+else
+	plugincolor="#FF0000"
+fi
+
+jsonify "$pluginname" "$plugintext" "$plugincolor"

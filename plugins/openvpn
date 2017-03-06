@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+source "./lib/bash/jsonify"
+pluginname="openvpn"
+vpnname=$(echo $0 | sed -e 's/^.*\.\(.*\)$/\1/g')
+
+if [ -d "/proc/$(cat /var/run/openvpn/${vpnname}.pid)" ] && [ -f "/var/run/openvpn/${vpnname}.pid" ]
+then
+	plugintext="✔ $vpnname"
+	plugincolor="#00AA00"
+else
+	plugintext="✘ $vpnname"
+	plugincolor="#AA0000"
+fi
+
+jsonify "$pluginname" "$plugintext" "$plugincolor"

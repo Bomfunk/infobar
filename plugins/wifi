@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+source "./lib/bash/jsonify"
+pluginname="wifi"
+ifname=$(echo $0 | sed -e 's/^.*\.\(.*\)$/\1/g')
+
+local_ip=$(ip addr show $ifname | awk '$1 == "inet" {gsub(/\/.*$/, "", $2); print $2}')
+
+if [ ! -z $local_ip ]
+then
+	essid="$(/sbin/iwgetid $ifname | sed -e 's/^.*"\(.*\)".*$/\1/g')"
+	signal="$(/sbin/iwconfig $ifname | awk '/Quality/ {print $2}' | sed -e 's/^.*=\(.*\)$/scale=0; 100\*\1/g' | bc -l)"
+	plugintext="✔ $ifname: ($signal% at $essid) $local_ip"
+	plugincolor="#00AA00"
+else
+	plugintext="✘ $ifname"
+	plugincolor="#AA0000"
+fi
+
+jsonify "$pluginname" "$plugintext" "$plugincolor"

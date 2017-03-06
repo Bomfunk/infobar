@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source "./lib/bash/jsonify"
+pluginname="disk-home"
+
+plugintext="/home $(df -h | awk '/\/home$/ {printf "%s/%s (%s)", $3, $2, $4}')"
+plugincolor="#DDDDDD"
+
+jsonify "$pluginname" "$plugintext" "$plugincolor"

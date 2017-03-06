@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+source "./lib/bash/jsonify"
+pluginname="iface-ip"
+ifname=$(echo $0 | sed -e 's/^.*\.\(.*\)$/\1/g')
+
+local_ip=$(ip addr show $ifname | awk '$1 == "inet" {gsub(/\/.*$/, "", $2); print $2}')
+
+if [ ! -z $local_ip ]
+then
+	plugintext="✔ $ifname: $local_ip"
+	plugincolor="#00AA00"
+else
+	plugintext="✘ $ifname"
+	plugincolor="#AA0000"
+fi
+
+jsonify "$pluginname" "$plugintext" "$plugincolor"
