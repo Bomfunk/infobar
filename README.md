@@ -1,9 +1,7 @@
 Infobar
 ==========
 
-Modular informer for i3bar
-
-![](http://it-the-drote.tk/images/infobar.png?raw=true)
+Modular informer for i3bar (forked from Like-all/infobar)
 
 This informer can show you any useful messages via plugins. The plugins can be written in **any programming language**: you just need to write to stdout a json-formatted string.
 
@@ -12,7 +10,7 @@ Example:
 {"name":"weather","full_text":"Moscow: ☽ 17","color":"#FFCC00","separator":false},
 ```
 
-There are four items: a plugin name, a plugin text, a plugin color and a separator remover(we will use our own separator). Also, after the object you need to write a trailing comma.
+There are four items: a plugin name, a plugin text, and a plugin color. Also, after the object you need to write a trailing comma.
 
 Installation
 ------------
