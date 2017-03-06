@@ -10,10 +10,10 @@ if [ ! -z $local_ip ]
 then
 	essid="$(/sbin/iwgetid $ifname | sed -e 's/^.*"\(.*\)".*$/\1/g')"
 	signal="$(/sbin/iwconfig $ifname | awk '/Quality/ {print $2}' | sed -e 's/^.*=\(.*\)$/scale=0; 100\*\1/g' | bc -l)"
-	plugintext="✔ $ifname: ($signal% at $essid) $local_ip"
+	plugintext="✔W:($signal% $essid) $local_ip"
 	plugincolor="#00AA00"
 else
-	plugintext="✘ $ifname"
+	plugintext="✘W"
 	plugincolor="#AA0000"
 fi
 

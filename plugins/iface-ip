@@ -8,10 +8,10 @@ local_ip=$(ip addr show $ifname | awk '$1 == "inet" {gsub(/\/.*$/, "", $2); prin
 
 if [ ! -z $local_ip ]
 then
-	plugintext="✔ $ifname: $local_ip"
+	plugintext="✔E:$local_ip"
 	plugincolor="#00AA00"
 else
-	plugintext="✘ $ifname"
+	plugintext="✘E"
 	plugincolor="#AA0000"
 fi
 
